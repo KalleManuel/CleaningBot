@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6058515756414423357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6058515756414423346}
+  - component: {fileID: 2583094203608790147}
+  m_Layer: 0
+  m_Name: AcidLauncher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6058515756414423346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058515756414423357}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6058515757027010164}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2583094203608790147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058515756414423357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed79902ae1f4d414697e8da588299120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Acid Launcher
+  itemImage: {fileID: 0}
+  itemLevel: 0
+  itemMaxLevel: 4
+  levelDescription: []
+  activated: 0
+  type: 0
+  itemTier:
+  - tierName: Tier 1
+    coolDown: 20
+    acidDmg: 0.4
+    hurtInterval: 0.6
+    duration: 10
+  - tierName: Tier 2
+    coolDown: 15
+    acidDmg: 0.8
+    hurtInterval: 0.5
+    duration: 20
+  - tierName: Tier 3
+    coolDown: 10
+    acidDmg: 1
+    hurtInterval: 0.4
+    duration: 25
+  - tierName: Tier 4
+    coolDown: 5
+    acidDmg: 2
+    hurtInterval: 0.3
+    duration: 30
+  acid: {fileID: 6555980906570364009, guid: ab8785f08b9dcf84280d0ae4e0192e77, type: 3}
+  dmgDealt: 0
+  reload: 0
+  reloadTimer: 0
+  blastTimer: 0
+--- !u!1 &6058515757027010167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6058515757027010164}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6058515757027010164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6058515757027010167}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6058515756414423346}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - EnemySpawner
+  - SpawnStopper
+  - Gun1
+  - NonWalkable
+  - ForceField
+  - Human
+  - Vacum
+  - Explosion
+  - Missile
+  - Walkable
+  - Blood
+  - Bullet
+  - UpgradeHandler
+  - Debris
+  - RLife
+  - ALife
+  - BLife
+  - HLife
+  - SLife
+  - LLife
+  - Aport
+  - Bport
+  - Hport
+  - Sport
+  - Lport
+  - Rport
+  - EndExplosion
+  - PLife
+  - BodySoul
+  - EndTrigger
+  - ASuit
+  - BSuit
+  - HSuit
+  - LSuit
+  - RSuit
+  - SSuit
+  - CoinStash
+  - SavedStats
+  - SmallHoover
+  - Stain
+  - Collectables
+  - FriendlyFire
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Player
+  - Water
+  - UI
+  - Bullet
+  - Enemy
+  - BigZombie
+  - QueenZombie
+  - ZombieChild
+  - ForceField
+  - Human
+  - MiniMap
+  - Walls
+  - Light
+  - CamBox
+  - Space
+  - Floor
+  - MiniMapEnemie
+  - Stain
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: space
+    uniqueID: 3442483513
+    locked: 0
+  - name: ground
+    uniqueID: 1746461651
+    locked: 0
+  - name: walls
+    uniqueID: 1426156283
+    locked: 0

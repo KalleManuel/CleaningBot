@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5289245514985699124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5289245514985699125}
+  - component: {fileID: 5289245514985699122}
+  m_Layer: 0
+  m_Name: Speed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5289245514985699125
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5289245514985699124}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5289245514985699122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5289245514985699124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d843192fa529ff14a890baf9a3ef5e37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Speed Booster
+  itemImage: {fileID: 21300000, guid: 8fa618442a966474980862f8df31c04a, type: 3}
+  itemLevel: 0
+  itemMaxLevel: 5
+  levelDescription:
+  - Make you move fast
+  - Make you move faster
+  - Make you move in a hurry
+  - Make you move like a sprinter
+  - Make you move in supersonic speed
+  activated: 0
+  maxLevelReached: 0
+  type: 0
+  itemTier:
+  - tierName: Tier 1
+    speed: 2.5
+    acceleration: 3
+    glide: 0.85
+  - tierName: Tier 2
+    speed: 3
+    acceleration: 4
+    glide: 0.9
+  - tierName: Tier 3
+    speed: 5
+    acceleration: 5
+    glide: 0.9
+  - tierName: Tier 4
+    speed: 7
+    acceleration: 6
+    glide: 0.95
+  - tierName: Tier 5
+    speed: 10
+    acceleration: 9
+    glide: 0.99
