@@ -9,6 +9,10 @@ public class EnemyMovement : MonoBehaviour
     
     private GameOver playerStatus;
 
+    public Vector2 aVelocity;
+    public bool animated;
+    public Animator anim;
+
     private void Start()
     {
         playerStatus = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameOver>();
@@ -25,6 +29,9 @@ public class EnemyMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        float tempSpeed = agent.speed;
+        agent.speed = tempSpeed*Random.Range(0.8f, 1.2f);
     }
 
     private void Update()
@@ -38,6 +45,23 @@ public class EnemyMovement : MonoBehaviour
             else agent.ResetPath();
         }
         else agent.ResetPath();
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (animated)
+        {
+
+            aVelocity = agent.velocity.normalized;
+
+            if (aVelocity.x == 0 && aVelocity.y == 0)
+            {
+                return;
+            }
+            anim.SetFloat("moveX", aVelocity.x);
+            anim.SetFloat("moveY", aVelocity.y);
+        }
 
     }
 }

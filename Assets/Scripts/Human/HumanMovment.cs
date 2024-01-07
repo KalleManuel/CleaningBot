@@ -24,6 +24,11 @@ public class HumanMovment : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        if (animated)
+        {
+            anim = GetComponent<Animator>();
+        }
     }
 
     private void Update()

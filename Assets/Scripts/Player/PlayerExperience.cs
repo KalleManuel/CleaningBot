@@ -26,6 +26,8 @@ public class PlayerExperience : MonoBehaviour
     [SerializeField]
     private UpgradeHandler upgradeHandler;
 
+    private bool startWithExtraItem;
+
     private void Start()
     {
         playerHud = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerHud>();
@@ -33,6 +35,12 @@ public class PlayerExperience : MonoBehaviour
         updateWindowOpened = false;
         upgradesAmounts = 3;
         sfxPlayer = GetComponent<AudioSource>();
+
+        if (GameObject.FindGameObjectWithTag("CoinStash").GetComponent<SavedStats>().amountExtraStartItems > 0)
+        {
+            startWithExtraItem = true;
+
+        }
     }
 
     void Update()
@@ -42,6 +50,7 @@ public class PlayerExperience : MonoBehaviour
             if (!updateWindowOpened)
             {
                 upgradeScreen.SetActive(true);
+                
                 upgradeScreen.GetComponent<UpgradeHandler>().UpgradeScrambler(upgradesAmounts);
                 updateWindowOpened = true;
             }
@@ -66,16 +75,26 @@ public class PlayerExperience : MonoBehaviour
     public void CloseUpgradeScreen(Item upgrade)
     {
         upgradeHandler.AddToActivated();
-        upgradeScreen.SetActive(false);
-        experienceLevel++;
-        experience = 0;
         GameObject.FindGameObjectWithTag("GameController").GetComponent<Pause>().ResumeGame(false);
-        updateWindowOpened = false;
         iconDisplay.UpdateIcon(upgrade);
-        Debug.Log(upgrade);
+        
+        if (startWithExtraItem)
+        {
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<StartConditions>().CloseFreeChoice();
+            startWithExtraItem = false;
 
-        playerHud.UpdatePlayerLevel();
-        playerHud.UpdatePlayerExperience();
+        }
+        else
+        {
+            upgradeScreen.SetActive(false);
+            updateWindowOpened = false;
+            experienceLevel++;
+            experience = 0;
+            playerHud.UpdatePlayerLevel();
+            playerHud.UpdatePlayerExperience();
+        }
+
+       
 
 
         experienceTreshhold *= experienceIncrement;

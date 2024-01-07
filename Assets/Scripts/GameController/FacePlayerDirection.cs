@@ -33,36 +33,36 @@ public class FacePlayerDirection : MonoBehaviour
     {
         direction = playerMovement.direction;
 
-        if (direction.x == 1 && direction.y == 0)
+        if (direction.x > .1f && direction.y == 0)
         {
             rotateAngle = 0;
         }
 
-        else if (direction.x == 1 && direction.y == 1)
+        else if (direction.x > .1f && direction.y > .1f)
         {
             rotateAngle = 45;
         }
-        else if (direction.x == 0 && direction.y == 1)
+        else if (direction.x == 0 && direction.y > .1f)
         {
             rotateAngle = 90;
         }
-        else if (direction.x == -1 && direction.y == 1)
+        else if (direction.x < -.1f && direction.y > .1f)
         {
             rotateAngle = 135;
         }
-        else if (direction.x == -1 && direction.y == 0)
+        else if (direction.x < -.1f && direction.y == 0)
         {
             rotateAngle = 180;
         }
-        else if (direction.x == -1 && direction.y == -1)
+        else if (direction.x < -.1f && direction.y < -.1f)
         {
             rotateAngle = 225;
         }
-        else if (direction.x == 0 && direction.y == -1)
+        else if (direction.x == 0 && direction.y < -.1f)
         {
             rotateAngle = 270;
         }
-        else if (direction.x == 1 && direction.y == -1)
+        else if (direction.x > .1f && direction.y < -.1f)
         {
             rotateAngle = 315;
         }

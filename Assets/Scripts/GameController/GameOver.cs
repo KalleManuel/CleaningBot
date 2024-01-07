@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.ShaderData;
 
 public class GameOver : MonoBehaviour
 {
@@ -36,6 +39,16 @@ public class GameOver : MonoBehaviour
     private Health playerHealth;
     private Statistic stats;
 
+    private bool countUp;
+    private float elapsedTime;
+    private float tempCoins, tempTrash;
+    public int coins;
+    private float countUpTime = 3;
+    public float pricePerLiter = 0.5f;
+    private float zero;
+
+
+
     void Start()
     {
         saveStats = GameObject.FindGameObjectWithTag("CoinStash").GetComponent<SavedStats>();
@@ -52,6 +65,30 @@ public class GameOver : MonoBehaviour
         getPaidButton.interactable = false;
 
         amountRevives = saveStats.amountRevives;
+    }
+    private void Update()
+    {
+        if (countUp)
+        {
+            elapsedTime += Time.unscaledDeltaTime;
+            float percentageComplete = elapsedTime / countUpTime;
+
+            stats.trash = (int)Mathf.Lerp(tempTrash, zero, percentageComplete);
+            coins = (int)Mathf.Lerp(zero, tempCoins, percentageComplete);
+
+            coinAmount.text = "" + coins;
+            trashAmount.text = "" + stats.trash;
+
+            if (stats.trash <= 0)
+            {
+                countUp = false;
+                saveStats.AddtempCoins(coins);
+                getPaidGO.SetActive(false);
+                backButtonGO.SetActive(true);
+                
+            }
+
+        }
     }
 
 
@@ -156,7 +193,24 @@ public class GameOver : MonoBehaviour
         Destroy(items);
         Destroy(shadow);
         getPaidButton.interactable = false;
-        StartCoroutine(ConvertTrash());
+        tempTrash = (float)stats.trash;
+        tempCoins = (float)stats.trash * pricePerLiter;
+
+        if (tempTrash >1000 && tempTrash < 2000)
+        {
+            countUpTime += 1;
+        }
+        else if (tempTrash > 2000)
+        {
+            countUpTime += 1.5f;
+        }
+        else if (tempTrash > 3000)
+        {
+            countUpTime += 2;
+        }
+        countUp = true;
+
+        //StartCoroutine(ConvertTrash());
     }
     public IEnumerator ConvertTrash()
     {

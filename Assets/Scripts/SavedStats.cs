@@ -9,7 +9,13 @@ public class SavedStats : MonoBehaviour, IDataPersistance
 
     public int amountRevives = 0;
     public int maxAmountRevive = 2;
+
     public GameObject[] humansSaved;
+
+    public int amountExtraStartItems;
+    public int maxAmountExtraStartItems = 1;
+
+    public bool touchControls = false;
 
 
     private static GameObject instance;
@@ -36,12 +42,14 @@ public class SavedStats : MonoBehaviour, IDataPersistance
     {
         data.coinsStored = this.coins;
         data.amountRevive = this.amountRevives;
+        data.amountExtraStartItems = this.amountExtraStartItems;
     }
 
     public void ResetData()
     {
         this.coins = 0;
         this.amountRevives = 0;
+        this.amountExtraStartItems = 0;
 
         DataPersistanceManager.instance.SaveGame();
     }
@@ -57,4 +65,5 @@ public class SavedStats : MonoBehaviour, IDataPersistance
         tempCoins = 0;
     }
 
+  
 }

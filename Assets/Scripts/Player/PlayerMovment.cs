@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovment : MonoBehaviour
@@ -14,13 +15,18 @@ public class PlayerMovment : MonoBehaviour
     public float maxSpeed = 10f;
     public float glideFactor = 0.95f;
     private bool glide;
+    public float directionX;
+    public float directionY;
 
     private Pause pause;
+    SavedStats savedStats;
 
     // Start is called before the first frame update
     void Awake()
     {
         pause = GameObject.FindGameObjectWithTag("GameController").GetComponent<Pause>();
+        savedStats = GameObject.FindGameObjectWithTag("CoinStash").GetComponent<SavedStats>();
+
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
  
@@ -29,12 +35,17 @@ public class PlayerMovment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (!pause.gamePaused)
         {
             TiltPlayer();
 
-            float directionX = Input.GetAxisRaw("Horizontal");
-            float directionY = Input.GetAxisRaw("Vertical");
+            if (!savedStats.touchControls)
+            {
+                 directionX = Input.GetAxisRaw("Horizontal");
+                 directionY = Input.GetAxisRaw("Vertical");
+            }
+           
 
             direction = new Vector2(directionX, directionY);
 

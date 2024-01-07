@@ -12,8 +12,7 @@ public class CleanHoover : MonoBehaviour
 
     void Start()
     {  
-        
-      
+
         inventory = player.GetComponent<PlayerInventory>();
     }
 

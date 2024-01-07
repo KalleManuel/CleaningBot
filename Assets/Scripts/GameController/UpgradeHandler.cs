@@ -17,8 +17,12 @@ public class UpgradeHandler : MonoBehaviour
     
     public GameObject[] currencyButtons;
 
+    Pause pause;
+
     private void Start()
     {
+        pause = GameObject.FindGameObjectWithTag("GameController").GetComponent<Pause>();
+
         for (int i = 0; i < currencyButtons.Length; i++)
         {
             currencyButtons[i].SetActive(false);
@@ -90,9 +94,9 @@ public class UpgradeHandler : MonoBehaviour
                         {
                             upgradeButtons[i].SetActive(false);
                         }
-                    } 
+                    }
 
-                    Time.timeScale = 0;
+                    pause.PauseGame(false);
                 }
 
             }
@@ -130,7 +134,7 @@ public class UpgradeHandler : MonoBehaviour
                         }
                     }
 
-                    GetComponent<Pause>().PauseGame(false);
+                    pause.PauseGame(false);
                 }
 
             }
@@ -187,6 +191,7 @@ public class UpgradeHandler : MonoBehaviour
                 currencyButtons[i].SetActive(true);
             }
         }
+        else pause.PauseGame(false);
     }
 
 }

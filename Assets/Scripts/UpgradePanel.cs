@@ -7,11 +7,18 @@ using TMPro;
 public class UpgradePanel : MonoBehaviour
 {
     private SavedStats savedStats;
+   
     [Header("REVIVE")]
     public int reviveUpgradeCost = 1000;
     public TextMeshProUGUI reviveCostText;
     public Image [] reviveLevelIndicators;
     public Button reviveButton;
+
+    [Header("PLUS ONE ITEM")]
+    public int plusOneItemUpgradeCost = 1000;
+    public TextMeshProUGUI plusOneItemUpgradeCostText;
+    public Image[] plusOneItemLevelIndicators;
+    public Button plusOneItemButton;
 
     [Header("GENERAL")]
     public Sprite lit;
@@ -24,11 +31,13 @@ public class UpgradePanel : MonoBehaviour
         savedStats = GameObject.FindGameObjectWithTag("CoinStash").GetComponent<SavedStats>();
         warningText.text = "";
         reviveCostText.text = "" + reviveUpgradeCost;
+        plusOneItemUpgradeCostText.text = "" + plusOneItemUpgradeCost;
 
-        //set Level Indicators for Revive 
+        //set Level Indicators for Upgrades 
         SetIndicators();
        
     }
+   
 
     public void BuyRevive()
     {
@@ -51,10 +60,34 @@ public class UpgradePanel : MonoBehaviour
         else warningText.text = "You can't afford this item!";
     }
 
+    public void BuyOneExtraItem()
+    {
+
+        if (savedStats.coins >= plusOneItemUpgradeCost)
+        {
+            //savedStats.Revives(reviveUpgradeCost);
+            savedStats.amountExtraStartItems++;
+            savedStats.coins -= plusOneItemUpgradeCost;
+            // DataPersistanceManager.instance.SaveGame();
+            CheckLevelIndicators(plusOneItemLevelIndicators, savedStats.amountExtraStartItems, savedStats.maxAmountExtraStartItems);
+            GetComponent<StartScreen>().UpdateCoinDisplay();
+
+            if (savedStats.amountExtraStartItems == savedStats.maxAmountExtraStartItems)
+            {
+                plusOneItemButton.interactable = false;
+            }
+
+        }
+        else warningText.text = "You can't afford this item!";
+    }
+
     public void SetIndicators()
     {
         reviveCostText.text = "" + reviveUpgradeCost;
+        plusOneItemUpgradeCostText.text = "" + plusOneItemUpgradeCost;
+
         CheckLevelIndicators(reviveLevelIndicators, savedStats.amountRevives, savedStats.maxAmountRevive);
+        CheckLevelIndicators(plusOneItemLevelIndicators, savedStats.amountExtraStartItems, savedStats.maxAmountExtraStartItems);
     }
     public void CheckLevelIndicators(Image[] indicatorsToCheck, int level, int maxLevel)
     {

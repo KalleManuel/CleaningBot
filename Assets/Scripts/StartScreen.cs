@@ -10,6 +10,7 @@ public class StartScreen : MonoBehaviour
     private SavedStats savedStats;
     public bool coinsLoaded;
     public float loadTimer;
+    public TextMeshProUGUI touchbutton;
 
     [SerializeField]
     private GameObject playPanel;
@@ -98,6 +99,20 @@ public class StartScreen : MonoBehaviour
         UpdateCoinDisplay();
         ResetScreenToggle();
     }
+    public void EnableTouch()
+    {
+        if (savedStats.touchControls)
+        {
+            savedStats.touchControls = false;
+            touchbutton.color = Color.white;
+        }
+        else
+        {
+            savedStats.touchControls = true;
+            touchbutton.color = Color.green;
+        }
+    }
 
-   
+
+
 }
