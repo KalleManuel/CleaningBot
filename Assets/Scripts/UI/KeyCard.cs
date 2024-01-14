@@ -24,6 +24,7 @@ public class KeyCard : InventoryItem
             if (!pickedUp) 
             {
                 StartCoroutine(playerHUD.SendMessageToHUD(message, 3, false));
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<Statistic>().keys++;
                 pickedUp = true;
             }
             gameObject.SetActive(false);   

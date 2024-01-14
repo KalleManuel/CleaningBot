@@ -5,7 +5,7 @@ using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.ShaderData;
+//using static UnityEditor.ShaderData;
 
 public class GameOver : MonoBehaviour
 {
@@ -104,6 +104,7 @@ public class GameOver : MonoBehaviour
         if (win)
         {
             title.text = "Level Cleared";
+            stats.levelCleared = true;
             background.SetColor(winColor);
             reviveGO.SetActive(false);
             getPaidGO.transform.localPosition = new Vector3(0, getPaidGO.transform.localPosition.y, getPaidGO.transform.localPosition.z);
@@ -189,12 +190,10 @@ public class GameOver : MonoBehaviour
        
         Instantiate(endExplosion, player.transform.position, player.transform.rotation, transform);
         reviveGO.SetActive(false);
-        Destroy(player);
-        Destroy(items);
-        Destroy(shadow);
         getPaidButton.interactable = false;
         tempTrash = (float)stats.trash;
         tempCoins = (float)stats.trash * pricePerLiter;
+        saveStats.CheckOcjectives();
 
         if (tempTrash >1000 && tempTrash < 2000)
         {
@@ -209,6 +208,9 @@ public class GameOver : MonoBehaviour
             countUpTime += 2;
         }
         countUp = true;
+        Destroy(player);
+        Destroy(items);
+        Destroy(shadow);
 
         //StartCoroutine(ConvertTrash());
     }

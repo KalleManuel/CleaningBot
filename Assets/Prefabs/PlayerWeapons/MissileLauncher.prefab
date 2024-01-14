@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &302480756797466129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 302480756797466128}
+  - component: {fileID: 302480756797466135}
+  m_Layer: 0
+  m_Name: MissileLauncher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &302480756797466128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302480756797466129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &302480756797466135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302480756797466129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccd5dff099832f1429e309f3efc79b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Rocket Launcher
+  itemImage: {fileID: 21300000, guid: 32f576fb75736ea4aa0235888959eb0e, type: 3}
+  itemLevel: 0
+  itemMaxLevel: 5
+  levelDescription:
+  - Launches one projectile in random direction, damage on impact.
+  - Launches +1 projectile in random direction, damage on impact.
+  - Launches +1 projectile in random direction, damage on impact.
+  - Launches +1 projectile in random direction, damage on impact.
+  - Launches +1 projectile in random direction, damage on impact.
+  activated: 0
+  maxLevelReached: 0
+  type: 1
+  itemTier:
+  - tierName: Tier 1
+    radius: 1.5
+    maxRange: 0.41
+    minRange: 0.39
+    damage: 25
+    speed: 8
+    reloadtime: 3
+    interval: 1
+    amountProjectiles: 1
+  - tierName: Tier 2
+    radius: 1.5
+    maxRange: 0.41
+    minRange: 0.39
+    damage: 25
+    speed: 10
+    reloadtime: 2.8
+    interval: 1
+    amountProjectiles: 2
+  - tierName: Tier 3
+    radius: 1.5
+    maxRange: 0.41
+    minRange: 0.3
+    damage: 25
+    speed: 11
+    reloadtime: 2.8
+    interval: 0.8
+    amountProjectiles: 3
+  - tierName: Tier 4
+    radius: 1.5
+    maxRange: 0.41
+    minRange: 0.2
+    damage: 30
+    speed: 11
+    reloadtime: 2.8
+    interval: 0.8
+    amountProjectiles: 3
+  - tierName: Tier 5
+    radius: 1.5
+    maxRange: 0.41
+    minRange: 0.2
+    damage: 30
+    speed: 13
+    reloadtime: 2.8
+    interval: 0.5
+    amountProjectiles: 5
+  range: 0
+  timeToLaunch: 0
+  randomDirection: 0
+  launch: 0
+  missilePrefab: {fileID: 5447018135522537722, guid: 56c4dba0319d0eb478b9ae01d6f490e2, type: 3}
+  missileLaunched: {fileID: 0}
+  spawnLocation: {fileID: 0}
+  launchTimer: 0
+  launchWait: 3

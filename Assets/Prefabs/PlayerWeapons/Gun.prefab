@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8061969105778821087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8061969105778821086}
+  - component: {fileID: 8061969105778821085}
+  m_Layer: 0
+  m_Name: Gun
+  m_TagString: Gun1
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8061969105778821086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8061969105778821087}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8061969106935275927}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8061969105778821085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8061969105778821087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bd4524ce51ca740b06302dbcb742cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Plunger Gun
+  itemImage: {fileID: 21300000, guid: e290b8502d9056645bacf7ee03f257c3, type: 3}
+  itemLevel: 0
+  itemMaxLevel: 8
+  levelDescription:
+  - Adds one bullet and one aiming direction.
+  - Adds one bullet and one aiming direction.
+  - Adds one bullet and one aiming direction.
+  - Adds one bullet and one aiming direction.
+  - Adds one bullet and one aiming direction.
+  - Adds one bullet and one aiming direction.
+  - Adds one bullet and one aiming direction.
+  - Adds one bullet and one aiming direction.
+  activated: 0
+  available: 0
+  startItem: 0
+  maxLevelReached: 0
+  type: 1
+  itemTier:
+  - tierName: Tier 1
+    reloadTime: 2
+    interval: 0.5
+    amountBullets: 1
+    bulletDmg: 0.5
+    bulletSpeed: 15
+    strongBullets: 0
+  - tierName: Tier 2
+    reloadTime: 1.9
+    interval: 0.5
+    amountBullets: 2
+    bulletDmg: 0.5
+    bulletSpeed: 15
+    strongBullets: 0
+  - tierName: Tier 3
+    reloadTime: 1.8
+    interval: 0.5
+    amountBullets: 3
+    bulletDmg: 0.7
+    bulletSpeed: 16
+    strongBullets: 0
+  - tierName: Tier 4
+    reloadTime: 1.7
+    interval: 0.5
+    amountBullets: 4
+    bulletDmg: 1
+    bulletSpeed: 17
+    strongBullets: 0
+  - tierName: Tier 5
+    reloadTime: 1.5
+    interval: 0.5
+    amountBullets: 5
+    bulletDmg: 1.2
+    bulletSpeed: 17
+    strongBullets: 1
+  - tierName: Tier 6
+    reloadTime: 1
+    interval: 0.4
+    amountBullets: 6
+    bulletDmg: 1.5
+    bulletSpeed: 18
+    strongBullets: 0
+  - tierName: Tier 6
+    reloadTime: 1
+    interval: 0.3
+    amountBullets: 7
+    bulletDmg: 2
+    bulletSpeed: 18
+    strongBullets: 1
+  - tierName: Tier 7
+    reloadTime: 0.5
+    interval: 0.2
+    amountBullets: 8
+    bulletDmg: 3
+    bulletSpeed: 20
+    strongBullets: 1
+  coolDown: 0
+  startCoolDown: 0
+  player: {fileID: 0}
+  direction: {x: 0, y: 0}
+  rotateAngle: 0
+  bullet: {fileID: 2439581431468751478, guid: e172264e614b4f340a61e26aea8f82c9, type: 3}
+  spawnedBullet: {fileID: 0}
+  bulletSpawner: {fileID: 8061969106935275927}
+  spawnLocation: {fileID: 0}
+  playerXP: {fileID: 0}
+--- !u!1 &8061969106935275928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8061969106935275927}
+  m_Layer: 0
+  m_Name: BulletSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8061969106935275927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8061969106935275928}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.4, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8061969105778821086}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

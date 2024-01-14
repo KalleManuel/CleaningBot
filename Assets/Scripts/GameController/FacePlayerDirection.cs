@@ -10,7 +10,7 @@ public class FacePlayerDirection : MonoBehaviour
     public float rotateAngle;
 
     [SerializeField]
-    private Whip whip;
+    private Item_Whip whip;
     
 
     // Start is called before the first frame update

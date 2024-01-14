@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Statistic : MonoBehaviour
 {
-    public int bloodClots, debris, enemiesKilled, humansSaved, plungersInScene, trash;
+    public int bloodClots, debris, enemiesKilled, humansSaved, plungersInScene, trash, keys;
+    public bool levelCleared;
  
 
     // Start is called before the first frame update
@@ -16,6 +17,8 @@ public class Statistic : MonoBehaviour
         humansSaved = 0;
         plungersInScene = 0;
         trash = 0;
+        keys = 0;
+        levelCleared = false;
 
     }
     public void UpdateStats()

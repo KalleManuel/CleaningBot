@@ -27,7 +27,11 @@ public class HumanMovment : MonoBehaviour
 
         if (animated)
         {
-            anim = GetComponent<Animator>();
+            if (anim == null)
+            {
+                anim = GetComponent<Animator>();
+            }
+            
         }
     }
 

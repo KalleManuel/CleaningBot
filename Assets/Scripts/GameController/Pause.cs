@@ -8,8 +8,9 @@ public class Pause : MonoBehaviour
 {
     [SerializeField]
     private GameObject pauseMenu;
-    [SerializeField]
-    private TextMeshPro touchButton;
+  
+    public TextMeshProUGUI touchButton;
+
     SavedStats savedStats;
 
 

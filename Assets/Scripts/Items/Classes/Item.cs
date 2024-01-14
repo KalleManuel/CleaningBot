@@ -12,6 +12,8 @@ public class Item : MonoBehaviour
     public int itemMaxLevel;
     public string[] levelDescription;
     public bool activated;
+    public bool available;
+    public bool startItem;
     public bool maxLevelReached;
     
     public enum Type { Default, Attack, Defense}

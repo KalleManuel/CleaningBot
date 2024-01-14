@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public GameObject theDoor;
+
     private PlayerHud playerHUD;
     public string missingKeyMessage;
     public InventoryItem theCorrectKey;
     public string correctKey;
     private bool doorOpened;
-    
+
+    private Animator anim;
+    public GameObject col;
 
     private void Start()
     {
         playerHUD = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerHud>();
+        anim = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,8 +30,8 @@ public class Door : MonoBehaviour
             {
                 if (correctKey == playerInventory.inventoryItems[i].itemName)
                 {
-                    theDoor.SetActive(false);
                     doorOpened = true;
+                    anim.SetBool("doorOpen", true);
                     break;
                 }
             }
@@ -39,5 +42,12 @@ public class Door : MonoBehaviour
             }
 
         }
+    }
+
+    public void DoorIsOpened()
+    {
+        gameObject.SetActive(false);
+        col.SetActive(false);
+       
     }
 }

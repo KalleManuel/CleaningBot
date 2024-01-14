@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4975946303940586652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4975946303940586655}
+  - component: {fileID: 4975946303940586654}
+  m_Layer: 0
+  m_Name: LifeExpander
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4975946303940586655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975946303940586652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4975946303940586654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975946303940586652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0da3d2d5ddcfd1842abe2edfa1b089fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Life Expander
+  itemImage: {fileID: 21300000, guid: 7187c95147bd79f48bb74c0d7326c101, type: 3}
+  itemLevel: 0
+  itemMaxLevel: 8
+  levelDescription:
+  - + 10 on max health
+  - + 10 on max health
+  - + 10 on max health
+  - + 10 on max health
+  - + 10 on max health
+  - + 10 on max health
+  - + 20 on max health
+  - + 20 on max health
+  activated: 0
+  maxLevelReached: 0
+  type: 2
+  itemTier:
+  - tierName: Tier 1
+    extraLife: 10
+  - tierName: Tier 2
+    extraLife: 10
+  - tierName: Tier 3
+    extraLife: 10
+  - tierName: Tier 4
+    extraLife: 10
+  - tierName: Tier 5
+    extraLife: 10
+  - tierName: Tier 6
+    extraLife: 10
+  - tierName: Tier 7
+    extraLife: 20
+  - tierName: Tier 8
+    extraLife: 20
