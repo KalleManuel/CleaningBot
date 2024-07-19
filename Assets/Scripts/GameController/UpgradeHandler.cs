@@ -10,6 +10,8 @@ public class UpgradeHandler : MonoBehaviour
     public GameObject slotholder;
     public GameObject upgradePool;
 
+    public List<GameObject> availableItems;
+
     public List<GameObject> activatedUpgrades;
     private bool inventoryFull;
 
@@ -19,27 +21,59 @@ public class UpgradeHandler : MonoBehaviour
 
     Pause pause;
 
+    private SavedStats savedStats;
+
     private void Start()
     {
+        savedStats = GameObject.FindGameObjectWithTag("CoinStash").GetComponent<SavedStats>();
         pause = GameObject.FindGameObjectWithTag("GameController").GetComponent<Pause>();
 
         for (int i = 0; i < currencyButtons.Length; i++)
         {
             currencyButtons[i].SetActive(false);
         }
+
+        for (int e = 0; e < upgradeButtons.Length; e++)
+        {
+            upgradeButtons[e].SetActive(false);
+        }
+
     }
 
     public void UpgradeScrambler(int amountChoices)
     {
+        // Find out wich items that are currently availeble
+
+        for (int i = 0; i < savedStats.availebleItems.Count; i++)
+        {
+            string itemToCompare = savedStats.availebleItems[i].GetComponent<Item>().itemName;
+            
+
+            for (int e = 0; e < upgradeButtons.Length; e++)
+            {
+                Item itemToLookFor = upgradeButtons[e].GetComponent<ItemInfoRevealer>().upgrade;
+                string itemName = itemToLookFor.itemName;
+                
+
+                if (itemToCompare == itemName)
+                {
+
+                    availableItems.Add(upgradeButtons[e]);
+                }  
+            }
+        }
+
+        // set how meny alternativs player get
+        
         buttonsLit = amountChoices;
 
-        for (int i = 0; i < upgradeButtons.Length; i++)
+
+        for (int i = 0; i < availableItems.Count; i++)
         {
-            upgradeButtons[i].SetActive(true);
-            // upgradeButtons[i].transform.parent = upgradePool.transform;
-            upgradeButtons[i].transform.SetParent(upgradePool.transform);
-            upgradeButtons[i].GetComponent<ItemInfoRevealer>().SetStatus();
-            upgradeButtons[i].GetComponent<ItemInfoRevealer>().chosen = false;
+            availableItems[i].SetActive(true);
+            availableItems[i].transform.SetParent(upgradePool.transform);
+            availableItems[i].GetComponent<ItemInfoRevealer>().SetStatus();
+            availableItems[i].GetComponent<ItemInfoRevealer>().chosen = false;
 
         }
 
@@ -71,28 +105,28 @@ public class UpgradeHandler : MonoBehaviour
 
     public void Scrambler(int random)
     {
-        ItemInfoRevealer itemToUpgrade = upgradeButtons[random].GetComponent<ItemInfoRevealer>();
+        ItemInfoRevealer itemToUpgrade = availableItems[random].GetComponent<ItemInfoRevealer>();
 
         if (!itemToUpgrade.chosen)
         {
             if (!itemToUpgrade.notUpgradeble)
             {
-                upgradeButtons[random].transform.parent = slotholder.transform;
-                upgradeButtons[random].SetActive(true);
+                availableItems[random].transform.parent = slotholder.transform;
+                availableItems[random].SetActive(true);
                 buttonsLit--;
                 itemToUpgrade.chosen = true;
 
                 if (buttonsLit != 0)
                 {
-                    Scrambler(Random.Range(0, upgradeButtons.Length));
+                    Scrambler(Random.Range(0, availableItems.Count));
                 }
                 else
                 {
-                    for (int i = 0; i< upgradeButtons.Length; i++)
+                    for (int i = 0; i< availableItems.Count; i++)
                     {
-                        if (!upgradeButtons[i].GetComponent<ItemInfoRevealer>().chosen)
+                        if (!availableItems[i].GetComponent<ItemInfoRevealer>().chosen)
                         {
-                            upgradeButtons[i].SetActive(false);
+                            availableItems[i].SetActive(false);
                         }
                     }
 
@@ -100,10 +134,10 @@ public class UpgradeHandler : MonoBehaviour
                 }
 
             }
-            else Scrambler(Random.Range(0, upgradeButtons.Length));
+            else Scrambler(Random.Range(0, availableItems.Count));
 
         }
-        else Scrambler(Random.Range(0, upgradeButtons.Length));
+        else Scrambler(Random.Range(0, availableItems.Count));
 
     }
 
@@ -149,18 +183,18 @@ public class UpgradeHandler : MonoBehaviour
     {
         if (!inventoryFull)
         {
-            for (int i = 0; i < upgradeButtons.Length; i++)
+            for (int i = 0; i < availableItems.Count; i++)
             {
-                if (upgradeButtons[i].GetComponent<ItemInfoRevealer>().activated)
+                if (availableItems[i].GetComponent<ItemInfoRevealer>().activated)
                 {
-                    if (!activatedUpgrades.Contains(upgradeButtons[i]))
-                        activatedUpgrades.Add(upgradeButtons[i]);
+                    if (!activatedUpgrades.Contains(availableItems[i]))
+                        activatedUpgrades.Add(availableItems[i]);
                 }
             }
 
             if (activatedUpgrades.Count == 12)
             {
-                Debug.Log("inventory full");
+              
                 inventoryFull = true;
             }
         }

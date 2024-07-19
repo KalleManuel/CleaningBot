@@ -44,6 +44,11 @@ public class Item_AcidLauncher : Item
     // Update is called once per frame
     void Update()
     {
+        if (startItem)
+        {
+            startItem = false;
+            UpdateAcid(true);
+        }
         if (activated)
         {
             if (reload)
@@ -58,7 +63,7 @@ public class Item_AcidLauncher : Item
                     GameObject acidObject = Instantiate(acid, transform.position, transform.rotation, spawnLocation.transform);
                     Acid acidScript = acidObject.GetComponent<Acid>();
                     acidScript.duration = itemTier[itemLevel].duration;
-                    acidScript.dmg = itemTier[itemLevel].acidDmg;
+                    acidScript.dmg = itemTier[itemLevel].acidDmg * savedStats.extraDMG;
                     acidScript.hurtInterval = itemTier[itemLevel].hurtInterval;
 
 
@@ -68,7 +73,7 @@ public class Item_AcidLauncher : Item
         }
     }
 
-    public void UpdateAcid()
+    public void UpdateAcid(bool _isStartItem)
     {
         if (!activated)
         {
@@ -79,22 +84,19 @@ public class Item_AcidLauncher : Item
             {
                 itemLevel++;
             }
-
-            playerXP.CloseUpgradeScreen(this);
-
         }
 
         else
-        {
-            
-            itemLevel++;
-            playerXP.CloseUpgradeScreen(this);
-
+        {  
+             itemLevel++;
+           
             if (itemLevel == itemMaxLevel - 1)
             {
                 maxLevelReached = true;
             }
-        }
+        } 
+        
+        playerXP.CloseUpgradeScreen(this,_isStartItem);
     }
 }
 

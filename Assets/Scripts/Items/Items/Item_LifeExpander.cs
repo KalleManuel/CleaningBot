@@ -28,8 +28,16 @@ public class Item_LifeExpander : Item
         playerHP = player.GetComponent<Health>();
         playerXP = player.GetComponent<PlayerExperience>();
     }
+    private void Update()
+    {
+        if (startItem)
+        {
+            startItem = false;
+            UpdateLifeExpander(true);
+        }
+    }
 
-    public void UpdateLifeExpander()
+    public void UpdateLifeExpander(bool _isStartItem)
     {
         if (!activated)
         {
@@ -41,7 +49,7 @@ public class Item_LifeExpander : Item
             activated = true;
             playerHP.maxHealth += itemTier[itemLevel].extraLife;
             playerHud.UpdateLifeBar();
-            playerXP.CloseUpgradeScreen(this);
+            
         }
         else
         {
@@ -54,9 +62,8 @@ public class Item_LifeExpander : Item
                 maxLevelReached = true;
             }
 
-            playerXP.CloseUpgradeScreen(this);
+            
         }
-        
-      
+        playerXP.CloseUpgradeScreen(this,_isStartItem);   
     }
 }

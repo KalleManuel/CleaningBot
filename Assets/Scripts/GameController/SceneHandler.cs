@@ -24,6 +24,7 @@ public class SceneHandler : MonoBehaviour
         {  
             SavedStats stash = GameObject.FindGameObjectWithTag("CoinStash").GetComponent<SavedStats>();
             stash.CollectCoins();
+           
             DataPersistanceManager.instance.SaveGame();   
         }
 

@@ -41,8 +41,9 @@ public class Item_Whip : Item
         if (startItem)
         {
             startItem = false;
-            UpgradeWhip();
+            UpgradeWhip(true);
         }
+
         if (activated)
         {
             if (coolingDown)
@@ -85,17 +86,23 @@ public class Item_Whip : Item
   
     }
 
-    public void UpgradeWhip()
+    public void UpgradeWhip(bool _isStartItem)
     {
         if (!activated)
         {
             activated = true;
+           
             if (savedStats.level2Boost > 0)
             {
                 itemLevel++;
             }
 
-            playerXP.CloseUpgradeScreen(this);
+            if (_isStartItem)
+            {
+                playerXP.CloseUpgradeScreen(this, true);
+            }
+            else playerXP.CloseUpgradeScreen(this, false);
+
         }
         else
         {
@@ -106,7 +113,7 @@ public class Item_Whip : Item
                 maxLevelReached = true;
             }
 
-            playerXP.CloseUpgradeScreen(this);
+            playerXP.CloseUpgradeScreen(this,false);
         }               
     }
 }

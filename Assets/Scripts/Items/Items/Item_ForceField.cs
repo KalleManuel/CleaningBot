@@ -48,6 +48,11 @@ public class Item_ForceField : Item
     // Update is called once per frame
     void Update()
     {
+        if (startItem)
+        {
+            startItem = false;
+            UpgradeForcefield(true);
+        }
         if (activated)
         {
             if (isOn)
@@ -128,12 +133,16 @@ public class Item_ForceField : Item
     public void HurtEnemies()
     {
         for (int i = 0; i < enemiesInRange.Count; i++)
-        {
-            Debug.Log("Damage to " + enemiesInRange[i]);
+        { 
 
-            enemiesInRange[i].GetComponent<EnemyHealth>().health -= itemTier[itemLevel].dmg;
+            enemiesInRange[i].GetComponent<EnemyHealth>().health -= itemTier[itemLevel].dmg *savedStats.extraDMG;
             enemiesInRange[i].GetComponent<EnemyHealth>().positionOfInflictor = this.gameObject.transform.position;
             enemiesInRange[i].GetComponent<VisualDamage>().visualDmg = true;
+
+            if (enemiesInRange[i].gameObject.TryGetComponent<Knockback>(out Knockback knockback))
+            {
+                knockback.ApplyKnockback(this.gameObject.transform);
+            }
         }
     }
     public void HealHumans()
@@ -175,7 +184,7 @@ public class Item_ForceField : Item
         }
     }
 
-    public void UpgradeForcefield()
+    public void UpgradeForcefield(bool _isStartItem)
     {
         if (!activated)
         {
@@ -186,8 +195,6 @@ public class Item_ForceField : Item
             {
                 itemLevel++;
             }
-
-            playerXP.CloseUpgradeScreen(this);
         }
         else
         {
@@ -200,9 +207,9 @@ public class Item_ForceField : Item
             if (itemLevel == itemMaxLevel - 1)
             {
                 maxLevelReached = true;
-            }
-
-            playerXP.CloseUpgradeScreen(this);
-        }               
+            }       
+        }
+        
+        playerXP.CloseUpgradeScreen(this, _isStartItem);               
     }
 }

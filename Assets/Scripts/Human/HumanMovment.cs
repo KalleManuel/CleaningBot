@@ -63,12 +63,21 @@ public class HumanMovment : MonoBehaviour
 
             aVelocity = agent.velocity.normalized;
 
-            if (aVelocity.x == 0 && aVelocity.y == 0)
-            {
-                return;
-            }
             anim.SetFloat("moveX", aVelocity.x);
             anim.SetFloat("moveY", aVelocity.y);
+
+            if (aVelocity.x == 0 && aVelocity.y == 0)
+            {
+                anim.SetBool("isWalking", false);
+                
+            }
+            else
+            {
+                anim.SetBool("isWalking", true);
+                anim.SetFloat("lastX", aVelocity.x);
+                anim.SetFloat("lastY", aVelocity.y);
+            }
+            
         }
         
     }

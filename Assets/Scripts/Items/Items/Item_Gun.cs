@@ -46,6 +46,7 @@ public class Item_Gun : Item
 
     void Start()
     {
+        savedStats = GameObject.FindGameObjectWithTag("CoinStash").GetComponent<SavedStats>();
         playerXP = player.GetComponent<PlayerExperience>();
         gunAim = player.GetComponent<PlayerMovment>();
 
@@ -55,9 +56,14 @@ public class Item_Gun : Item
         coolDown = 0;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
+        if (startItem)
+        {
+            startItem = false;
+            UpgradeGun(true);
+        }
         if (activated)
         {
             BulletDirection();
@@ -83,7 +89,7 @@ public class Item_Gun : Item
             {
             
             spawnedBullet =  Instantiate(bullet, bulletSpawner.position, transform.rotation, spawnLocation.transform);
-            spawnedBullet.GetComponent<BulletScript>().dealDamage = itemTier[itemLevel].bulletDmg;
+            spawnedBullet.GetComponent<BulletScript>().dealDamage = itemTier[itemLevel].bulletDmg *savedStats.extraDMG;
             spawnedBullet.GetComponent<BulletScript>().speed = itemTier[itemLevel].bulletSpeed;
             spawnedBullet.GetComponent<BulletScript>().strongBullets = itemTier[itemLevel].strongBullets;
 
@@ -136,33 +142,28 @@ public class Item_Gun : Item
         transform.rotation = Quaternion.Euler(0, 0, rotateAngle);
     }
 
-    public void UpgradeGun()
+    public void UpgradeGun(bool _startItem)
     {
         if (!activated)
         {
-            activated = true;
-
             if (savedStats.level2Boost > 0)
             {
                 itemLevel++;
             }
 
-            playerXP.CloseUpgradeScreen(this);
+            activated = true;
         }
         else
         {
             itemLevel++;
-            playerXP.CloseUpgradeScreen(this);
 
             if (itemLevel == itemMaxLevel - 1)
             {
                 maxLevelReached = true;
             }
         }
-        
 
-       
-
+        playerXP.CloseUpgradeScreen(this,_startItem);
     }
 
 }

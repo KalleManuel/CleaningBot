@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 2351733242612334980}
   - component: {fileID: 421503960262563585}
   - component: {fileID: 140623933}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ZombieBlue
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -263,6 +263,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   WaitFollowPlayer: 0
+  aVelocity: {x: 0, y: 0}
+  animated: 0
+  anim: {fileID: 0}
 --- !u!114 &2687718859984154621
 MonoBehaviour:
   m_ObjectHideFlags: 0

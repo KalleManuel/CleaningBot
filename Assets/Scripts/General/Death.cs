@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Death : MonoBehaviour
-{  
+{
+    public GameObject deadBody;
     public void Dead()
     {
         if (this.gameObject.tag == "Player")
@@ -25,6 +26,7 @@ public class Death : MonoBehaviour
             StartCoroutine(playerHUD.SendMessageToHUD(deathMessage, 3, false));
             playerHUD.UpdateHumansInGame();
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCompanions>().UpdateHumanCompanions();
+            Instantiate(deadBody, transform.position, transform.rotation);
             Destroy(transform.parent.gameObject);
         }
 

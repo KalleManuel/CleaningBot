@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 421503960262563585}
   - component: {fileID: 140623933}
   - component: {fileID: 8118763715890891646}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AlienBlobMedium
   m_TagString: Enemy
   m_Icon: {fileID: 0}

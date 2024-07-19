@@ -27,9 +27,11 @@ public class PlayerExperience : MonoBehaviour
     private UpgradeHandler upgradeHandler;
 
     private bool startWithExtraItem;
+    private SavedStats savedStats;
 
     private void Start()
     {
+        savedStats = GameObject.FindGameObjectWithTag("CoinStash").GetComponent<SavedStats>();
         playerHud = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerHud>();
         upgradeScreen.SetActive(false);
         updateWindowOpened = false;
@@ -53,16 +55,14 @@ public class PlayerExperience : MonoBehaviour
                 
                 upgradeScreen.GetComponent<UpgradeHandler>().UpgradeScrambler(upgradesAmounts);
                 updateWindowOpened = true;
-            }
-            
-        }
-        
+            }   
+        }  
     }
-
     public void GainExperience(float experienceGained)
     {
-        experience += (experienceGained * experienceBoost);
+        experience += (experienceGained * experienceBoost) *savedStats.extraXPBoost;
         int random = Random.Range(0, pickUpSounds.Length);
+        
         if (experienceGained > 0)
         {
             sfxPlayer.clip = pickUpSounds[random];
@@ -72,11 +72,15 @@ public class PlayerExperience : MonoBehaviour
         playerHud.UpdatePlayerExperience();
     } 
 
-    public void CloseUpgradeScreen(Item upgrade)
+    public void CloseUpgradeScreen(Item upgrade, bool startItem)
     {
         upgradeHandler.AddToActivated();
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<Pause>().ResumeGame(false);
         iconDisplay.UpdateIcon(upgrade);
+
+        if (!startItem)
+        {
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<Pause>().ResumeGame(false);
+        } 
         
         if (startWithExtraItem)
         {
@@ -86,17 +90,23 @@ public class PlayerExperience : MonoBehaviour
         }
         else
         {
-            upgradeScreen.SetActive(false);
-            updateWindowOpened = false;
-            experienceLevel++;
-            experience = 0;
-            playerHud.UpdatePlayerLevel();
-            playerHud.UpdatePlayerExperience();
+            if(!startItem)
+            {
+                upgradeScreen.SetActive(false);
+                updateWindowOpened = false;
+
+                experienceLevel++;
+                experience = 0;
+                playerHud.UpdatePlayerLevel();
+                playerHud.UpdatePlayerExperience();
+            } 
         }
 
-       
+        if (!startItem)
+        {
+            experienceTreshhold *= experienceIncrement;
+        }
 
-
-        experienceTreshhold *= experienceIncrement;
+        
     }
 }

@@ -25,7 +25,16 @@ public class Item_ExperienceBooster : Item
         playerSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovment>();
     }
 
-    public void UpgradeXPBoost()
+    private void Update()
+    {
+        if (startItem)
+        {
+            startItem = false;
+            UpgradeXPBoost(true);
+        }
+    }
+
+    public void UpgradeXPBoost(bool _isStartItem)
     {
         if (!activated)
         {
@@ -36,8 +45,6 @@ public class Item_ExperienceBooster : Item
             {
                 itemLevel++;
             }
-
-            playerXP.CloseUpgradeScreen(this);
         }
         else
         {
@@ -49,8 +56,9 @@ public class Item_ExperienceBooster : Item
                 maxLevelReached = true;
             }
 
-            playerXP.CloseUpgradeScreen(this);
+            
         }
 
+        playerXP.CloseUpgradeScreen(this,_isStartItem);
     }
 }

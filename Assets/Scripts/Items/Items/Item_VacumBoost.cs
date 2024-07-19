@@ -37,6 +37,11 @@ public class Item_VacumBoost : Item
 
     private void Update()
     {
+        if (startItem)
+        {
+            startItem = false;
+            UpgradeVacum(true);
+        }
         if (SuperVac)
         {
             if (playSound)
@@ -61,7 +66,7 @@ public class Item_VacumBoost : Item
         
     }
 
-    public void UpgradeVacum()
+    public void UpgradeVacum(bool _isStartItem)
     {
         if (!activated)
         {
@@ -73,7 +78,7 @@ public class Item_VacumBoost : Item
             
             activated = true;
             GetComponent<CircleCollider2D>().radius = itemTier[itemLevel].range;
-            playerXP.CloseUpgradeScreen(this);
+            
         } 
         else
         {
@@ -85,8 +90,8 @@ public class Item_VacumBoost : Item
             }
 
             GetComponent<CircleCollider2D>().radius = itemTier[itemLevel].range;
-            playerXP.CloseUpgradeScreen(this);
+           
         }
-            
+           playerXP.CloseUpgradeScreen(this, _isStartItem);  
     }
 }

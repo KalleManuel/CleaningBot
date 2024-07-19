@@ -33,6 +33,11 @@ public class Item_GPS: Item
     }
     private void Update()
     {
+        if (startItem)
+        {
+            startItem = false;
+            UpdateGPS(true);
+        }
         if (mapAcces)
         {
             if (Input.GetKeyDown(KeyCode.M))
@@ -56,7 +61,7 @@ public class Item_GPS: Item
         }
     }
 
-    public void UpdateGPS()
+    public void UpdateGPS(bool _isStartItem)
     {
         if (!activated)
         {
@@ -90,6 +95,6 @@ public class Item_GPS: Item
             maxLevelReached = true;
         }
 
-        playerXP.CloseUpgradeScreen(this);
+        playerXP.CloseUpgradeScreen(this,_isStartItem);
     }
 }

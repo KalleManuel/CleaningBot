@@ -58,6 +58,11 @@ public class Item_LaserClean : Item
     // Update is called once per frame
     void Update()
     {
+        if (startItem)
+        {
+            startItem = false;
+            UpdateLaserClean(true);
+        }
         if (activated)
         {
             blast.transform.Rotate(0, 0, itemTier[itemLevel].rotationSpeed * Time.deltaTime);
@@ -141,7 +146,7 @@ public class Item_LaserClean : Item
        
     }
 
-    public void UpdateLaserClean()
+    public void UpdateLaserClean(bool _isStartItem)
     {
         if (!activated)
         {
@@ -153,8 +158,6 @@ public class Item_LaserClean : Item
             {
                 itemLevel++;
             }
-
-            playerXP.CloseUpgradeScreen(this);
         }
         else
         {
@@ -167,15 +170,10 @@ public class Item_LaserClean : Item
                 {
                     maxLevelReached = true;
                 }
-
-                playerXP.CloseUpgradeScreen(this);
-
             }
-        }
-       
-       
-
+        }   
         
+        playerXP.CloseUpgradeScreen(this, _isStartItem);
 
     }
 }

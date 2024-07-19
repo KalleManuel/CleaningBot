@@ -37,6 +37,11 @@ public class Item_Sheild : Item
     }
     private void Update()
     {
+        if (startItem)
+        {
+            startItem = false;
+            UpgradeShield(true);
+        }
         if (activated)
         {
             if (shieldOn)
@@ -73,7 +78,7 @@ public class Item_Sheild : Item
        
     }
 
-    public void UpgradeShield()
+    public void UpgradeShield(bool _isStartItem)
     {
         if (!activated)
         {
@@ -87,7 +92,7 @@ public class Item_Sheild : Item
             playerHealth.shieldAmount = itemTier[itemLevel].sheild;
             shieldFeedback.enabled = true;
             activated = true;
-            playerXP.CloseUpgradeScreen(this);
+            
         }
         else
         {
@@ -99,8 +104,8 @@ public class Item_Sheild : Item
                 maxLevelReached = true;
             }
 
-            playerXP.CloseUpgradeScreen(this);
+            
         }
-
+        playerXP.CloseUpgradeScreen(this, _isStartItem);
     }
 }

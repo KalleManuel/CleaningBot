@@ -1,67 +1,129 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FlameAim : MonoBehaviour
 {
-    public Transform gunMuzzle;
+    public List<Transform> enemies;
 
-    public Vector3 [] aimsPosition;
-    public Quaternion[] aimsRotation;
+    public NavMeshAgent agent;
+    public float speedWhileShooting;
+    private float currentSpeed;
 
-    public SpriteRenderer flame;
+    public Transform target;
+    public float turnSpeed = 100;
 
-   public void GunDown()
+    public float flameTime;
+    public float timer;
+    public float reloadTime = 2;
+
+    public bool flameOn, readyToFlame;
+
+    private Pause pause;
+
+    [SerializeField]
+    private ParticleSystem flame;
+
+    private void Start()
     {
-        gunMuzzle.localPosition = aimsPosition[0];
-        gunMuzzle.localRotation = aimsRotation[0];
-        flame.sortingOrder = 11;
+        pause = GameObject.FindGameObjectWithTag("GameController").GetComponent<Pause>();
+
+        timer = flameTime;
+        flameOn = false;
+        readyToFlame = false;
     }
 
-    public void GunDownLeft()
+    private void Update()
     {
-        gunMuzzle.localPosition = aimsPosition[1];
-        gunMuzzle.localRotation = aimsRotation[1];
-        flame.sortingOrder = 11;
-    }
-    public void GunLeft()
-    {
-        gunMuzzle.localPosition = aimsPosition[2];
-        gunMuzzle.localRotation = aimsRotation[2];
-        flame.sortingOrder = 11;
-    }
-    public void GunLeftUp()
-    {
-        gunMuzzle.localPosition = aimsPosition[3];
-        gunMuzzle.localRotation = aimsRotation[3];
-        flame.sortingOrder = 9;
+        if (!pause.gamePaused)
+        {
+            // reloading
+            if (!flameOn && !readyToFlame)
+            {
+                if (reloadTime > 0)
+                {
+                    reloadTime -= Time.deltaTime;
+                }
+                else
+                {
+                    if (enemies.Count >= 1)
+                    {
+                        Shoot();
+                    }
+                    
+                    readyToFlame = true;
+                      
+                }
+
+            }
+
+            if (readyToFlame)
+            {
+                // reloaded - looking for target
+                if (target == null && enemies.Count >= 1)
+                {
+                    target = enemies[Random.Range(0, enemies.Count)];
+                    if (!flameOn)
+                    {
+                        Shoot();
+                    }
+                }
+                else if (target != null)
+                {
+                    // target found - aiming
+                    Vector2 targetDirection = target.position - transform.position;
+                    float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 180;
+                    Quaternion q = Quaternion.Euler(new Vector3(angle, -90, -90));
+
+                    transform.localRotation = Quaternion.Slerp(transform.localRotation, q, turnSpeed);
+                }
+
+                if (flameOn)
+                {
+                    // burning fuel
+                    if (timer > 0)
+                    {
+                        timer -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        // out of fuel - back to reloading   
+                        flame.Stop();
+                        reloadTime = 2;
+                        flameOn = false;
+                        agent.speed = currentSpeed;
+                        readyToFlame = false;
+                        timer = flameTime;
+                        
+                    }
+                }
+            }
+        }
     }
 
-    public void GunUp()
+    private void Shoot()
     {
-        gunMuzzle.localPosition = aimsPosition[4];
-        gunMuzzle.localRotation = aimsRotation[4];
-        flame.sortingOrder = 9;
+        flameOn = true;
+        currentSpeed = agent.speed;
+        agent.speed = speedWhileShooting;
+        flame.Play();
+
     }
 
-    public void GunUpRight()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        gunMuzzle.localPosition = aimsPosition[5];
-        gunMuzzle.localRotation = aimsRotation[5];
-        flame.sortingOrder = 9;
-    }
-    public void GunRight()
-    {
-        gunMuzzle.localPosition = aimsPosition[6];
-        gunMuzzle.localRotation = aimsRotation[6];
-        flame.sortingOrder = 11;
-    }
-    public void GunRightDown()
-    {
-        gunMuzzle.localPosition = aimsPosition[7];
-        gunMuzzle.localRotation = aimsRotation[7];
-        flame.sortingOrder = 11;
+        if (collision.gameObject.tag == "Enemy")
+        {
+            enemies.Add(collision.gameObject.transform);
+        }
     }
 
-
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            enemies.Remove(collision.gameObject.transform);
+        }
+    }
 }

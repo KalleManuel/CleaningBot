@@ -51,6 +51,11 @@ public class Item_MissileLauncher : Item
     // Update is called once per frame
     void Update()
     {
+        if (startItem)
+        {
+            startItem = false;
+            UpdateRocketLauncher(true);
+        }
         if (activated)
         {
             if (launch)
@@ -79,7 +84,7 @@ public class Item_MissileLauncher : Item
 
             missileLaunched = Instantiate(missilePrefab, transform.position, transform.rotation, spawnLocation.transform);
             missileLaunched.GetComponent<Missile>().speed = itemTier[itemLevel].speed;
-            missileLaunched.GetComponent<Missile>().damage = itemTier[itemLevel].damage;
+            missileLaunched.GetComponent<Missile>().damage = itemTier[itemLevel].damage * savedStats.extraDMG;
             missileLaunched.GetComponent<Missile>().radius = itemTier[itemLevel].radius;
             missileLaunched.GetComponent<Missile>().range = range;
 
@@ -91,7 +96,7 @@ public class Item_MissileLauncher : Item
         launchTimer = itemTier[itemLevel].reloadtime;
     }
 
-    public void UpdateRocketLauncher()
+    public void UpdateRocketLauncher(bool _isStartItem)
     {
         if (!activated)
         {
@@ -102,9 +107,6 @@ public class Item_MissileLauncher : Item
             {
                 itemLevel++;
             }
-
-            playerXP.CloseUpgradeScreen(this);
-
         }
         else
         {
@@ -115,8 +117,9 @@ public class Item_MissileLauncher : Item
                 maxLevelReached = true;
             }
 
-            playerXP.CloseUpgradeScreen(this);
+            
         }
+        playerXP.CloseUpgradeScreen(this,_isStartItem);
 
     }
 }

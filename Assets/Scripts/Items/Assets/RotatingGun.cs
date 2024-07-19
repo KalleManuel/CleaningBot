@@ -195,7 +195,7 @@ public class RotatingGun : Item
             interval = 0.5f;
         }
 
-        playerXP.CloseUpgradeScreen(this);
+        playerXP.CloseUpgradeScreen(this,false);
 
     }
 

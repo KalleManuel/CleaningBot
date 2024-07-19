@@ -36,6 +36,11 @@ public class Item_RegainHealth : Item
     }
     private void Update()
     {
+        if (startItem)
+        {
+            startItem = false;
+            UpdateRegainHealth(true);
+        }
         if (activated)
         {
             if (timer > 0)
@@ -67,7 +72,7 @@ public class Item_RegainHealth : Item
         
     }
 
-    public void UpdateRegainHealth()
+    public void UpdateRegainHealth(bool _isStartItem)
     {
         if (!activated)
         {
@@ -78,7 +83,6 @@ public class Item_RegainHealth : Item
 
             activated = true;
             timer = itemTier[itemLevel].reloadTime;
-            playerXP.CloseUpgradeScreen(this);
         } 
         else
         {
@@ -89,10 +93,10 @@ public class Item_RegainHealth : Item
                 maxLevelReached = true;
             }
 
-            playerXP.CloseUpgradeScreen(this);
+            
         }
 
-        
+        playerXP.CloseUpgradeScreen(this, _isStartItem);
         
     }
 }

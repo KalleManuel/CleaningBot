@@ -27,7 +27,7 @@ public class Item_SpeedBooster : Item
         playerSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovment>();
     }
 
-    public void UpgradeSpeed()
+    public void UpgradeSpeed(bool _isStartItem)
     {
         if (!activated)
         {
@@ -40,7 +40,7 @@ public class Item_SpeedBooster : Item
             playerSpeed.maxSpeed = itemTier[itemLevel].speed;
             playerSpeed.acceleration = itemTier[itemLevel].acceleration;
             playerSpeed.glideFactor = itemTier[itemLevel].glide;
-            playerXP.CloseUpgradeScreen(this);
+            
         }
         else
         {
@@ -54,8 +54,8 @@ public class Item_SpeedBooster : Item
                 maxLevelReached = true;
             }
 
-            playerXP.CloseUpgradeScreen(this);
+           
         }
-
+        playerXP.CloseUpgradeScreen(this, _isStartItem);
     }
 }

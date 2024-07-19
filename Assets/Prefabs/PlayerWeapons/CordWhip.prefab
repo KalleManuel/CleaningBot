@@ -98,11 +98,13 @@ MonoBehaviour:
   itemMaxLevel: 5
   levelDescription:
   - Attacks in one direction
-  - Attacks in two direction
+  - Attacks in two directions
   - increase damage, decrease cool down
   - increase damage, decrease cool down
   - increase damage, decrease cool down
   activated: 0
+  available: 0
+  startItem: 0
   maxLevelReached: 0
   type: 1
   itemTier:
@@ -133,6 +135,7 @@ MonoBehaviour:
     coolDown: 0.1
   faceDir: {fileID: 1469627777597577659}
   anim: {fileID: 6209027408122828489}
+  animLength: 0.9
   coolingDown: 0
   whipping: 0
   timer: 0
