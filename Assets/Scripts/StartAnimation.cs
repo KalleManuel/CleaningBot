@@ -10,8 +10,10 @@ public class StartAnimation : MonoBehaviour
     public class TheDialog
     {
         public string speaker;
+        public float speakerTime;
         public Sprite speakerSprite;
         public string responder;
+        public float responderTime;
         public Sprite responderSprite;
     }
 
@@ -30,7 +32,7 @@ public class StartAnimation : MonoBehaviour
         speakerText.text = "";
         responderText.text = "";
         speakerImage.sprite = null;
-        responderImage.sprite = null;
+        
 
         StartCoroutine(PlayDialog());
     }
@@ -39,29 +41,37 @@ public class StartAnimation : MonoBehaviour
     {
         for (int i = 0; i < dialog.Length; i++)
         {
-            speakerImage.sprite = dialog[i].speakerSprite;
-            responderImage.sprite = dialog[i].responderSprite;
 
             if (dialog[i].speaker != "")
             {
-                
+                speakerImage.sprite = dialog[i].speakerSprite;
                 speakerText.text = dialog[i].speaker;
+                dialogTime = dialog[i].speakerTime;
                 yield return new WaitForSeconds(dialogTime);
                 speakerText.text = "";
                 
                 if (dialog[i].responder != "")
                 {
-
+                    responderImage.sprite = dialog[i].responderSprite;
                     responderText.text = dialog[i].responder;
+                    dialogTime = dialog[i].responderTime;
                     yield return new WaitForSeconds(dialogTime);
                     responderText.text = "";
                 }
             }
             else if (dialog[i].responder != "")
             {
+                speakerImage.sprite = dialog[i].speakerSprite;
+                responderImage.sprite = dialog[i].responderSprite;
                 responderText.text = dialog[i].responder;
+                dialogTime = dialog[i].responderTime;
                 yield return new WaitForSeconds(dialogTime);
                 responderText.text = "";
+            }
+            else
+            {
+                speakerImage.sprite = dialog[i].speakerSprite;
+                responderImage.sprite = dialog[i].responderSprite;
             }
 
         }
