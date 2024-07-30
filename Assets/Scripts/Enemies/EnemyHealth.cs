@@ -7,14 +7,12 @@ public class EnemyHealth : MonoBehaviour
     public float health = 1;
 
     public bool outOfRange = true;
-    public float outOfRangeTimer = 3;
+    public float secondsOutOfRange = 5;
+    public float outOfRangeTimer;
     private bool stained;
 
     
     public Vector3 positionOfInflictor;
-    
-
-   // public GameObject[] bloodClots;
 
     public bool stayInGameUntilKilled;
 
@@ -27,6 +25,7 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         stats = GameObject.FindGameObjectWithTag("GameController").GetComponent<Statistic>();
+        outOfRangeTimer = secondsOutOfRange;
     }
 
     // Update is called once per frame
@@ -73,6 +72,7 @@ public class EnemyHealth : MonoBehaviour
         if (collision.gameObject.tag == ("SpawnStopper"))
         {
             outOfRange = false;
+            outOfRangeTimer = secondsOutOfRange;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

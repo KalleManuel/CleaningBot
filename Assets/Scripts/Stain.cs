@@ -23,7 +23,7 @@ public class Stain : MonoBehaviour
         Vector2 targetDirection = (killerPosition - transform.position).normalized;
         float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.Euler(new Vector3(0, 0, angle - 180));
-        Debug.Log(q);
+        
         transform.localRotation = q;
 
         int random = Random.Range(0, stain.Length); 

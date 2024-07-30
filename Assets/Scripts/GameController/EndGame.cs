@@ -74,7 +74,7 @@ public class EndGame : MonoBehaviour
     }
     public void LetMadnessBegin()
     {
-        Debug.Log("SpawnAfterBoss");
+        
         // Spawn meny enemies from outside room - force player toward exit
         spawnController.waveNumber = (spawnController.waves.Length - 2);
         spawnController.state = EnemySpawnController.SpawnState.Check;

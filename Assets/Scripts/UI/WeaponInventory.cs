@@ -37,7 +37,7 @@ public class WeaponInventory : MonoBehaviour
             }
             else
             {
-                Debug.Log("empty slot" + i);
+               // Debug.Log("empty slot" + i);
                 icons[i].sprite = upgrade.itemImage;
                 icons[i].color = Color.white;
                 levelBackground[i].SetActive(true);

@@ -24,10 +24,12 @@ public class Death : MonoBehaviour
             string deathMessage = GetComponent<Health>().characterName + " is dead";
             PlayerHud playerHUD = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerHud>();
             StartCoroutine(playerHUD.SendMessageToHUD(deathMessage, 3, false));
-            playerHUD.UpdateHumansInGame();
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCompanions>().UpdateHumanCompanions();
             Instantiate(deadBody, transform.position, transform.rotation);
             Destroy(transform.parent.gameObject);
+
+            playerHUD.UpdateHumansInGame();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCompanions>().UpdateHumanCompanions();
+
         }
 
 

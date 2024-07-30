@@ -28,7 +28,7 @@ public class PlayerCompanions : MonoBehaviour
         }
 
     }
-    public void UpdateHumanCompanions()
+    public void UpdateHumanCompanions() // why doesn't it remove when a human dies?
     {
         if (humanCompanions.Count > 0)
         {
@@ -36,6 +36,8 @@ public class PlayerCompanions : MonoBehaviour
             {
                 if (humanCompanions[i] == null)
                 {
+                    Debug.Log("empty slot-problem");
+                    humanCompanions[i] = null;
                     humanCompanions.RemoveAt(i);
                 }
 

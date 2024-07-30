@@ -4932,7 +4932,7 @@ MonoBehaviour:
     speakerTime: 2
     speakerSprite: {fileID: 21300000, guid: 58b1caf33abb1c0498ab3f9610292f04, type: 3}
     responder: The ship is under attack, ships crew is stunned by fear. Only you
-      can save them
+      can save them.
     responderTime: 6
     responderSprite: {fileID: 612461201, guid: 16cbd387ab036ef4abab9dc94d5c0d62, type: 3}
   - speaker: "Me? I\u2019m a CleanBot."
@@ -4951,7 +4951,7 @@ MonoBehaviour:
   - speaker: '!'
     speakerTime: 2
     speakerSprite: {fileID: 21300000, guid: 5b99a0feafc72564d80e1bdaf8ed375b, type: 3}
-    responder: Kill the alien scums, find my men, and bring them hom safe.
+    responder: Kill the alien scums, find my men, and bring them home safe.
     responderTime: 4
     responderSprite: {fileID: 612461201, guid: 16cbd387ab036ef4abab9dc94d5c0d62, type: 3}
   - speaker: Ay ay, sir
