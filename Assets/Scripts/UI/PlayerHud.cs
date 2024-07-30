@@ -114,13 +114,10 @@ public class PlayerHud : MonoBehaviour
 
         if (!stayOn)
         {
-            messageBoard.text = null;
-            playMessageSound = true;
-            //yield break;
+            messageBoard.text = "";
+            
         }
         playMessageSound = true;
-
-
 
     }
     public void UpdateHumanCollected()
