@@ -474,14 +474,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDmg: 5
-  bulletSpeed: 25
+  bulletSpeed: 20
+  mag: 1
   enemies: []
   target: {fileID: 0}
   turnSpeed: 100
+  shooting: 0
   bulletPrefab: {fileID: 2439581431468751478, guid: 4858a9c5d984a8f4a8522650b5928cd3, type: 3}
   spawnedBullet: {fileID: 0}
   shootTimer: 2
+  gunMagSize: 1
+  gunReloadTime: 1.5
   reloadTime: 1.5
+  isMachineGun: 0
+  machineGunMagSize: 6
+  machineGunReloadeTime: 3
 --- !u!1 &3217666764345034655
 GameObject:
   m_ObjectHideFlags: 0
