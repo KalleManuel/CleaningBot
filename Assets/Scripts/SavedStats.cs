@@ -83,7 +83,9 @@ public class SavedStats : MonoBehaviour, IDataPersistance
     public GameObject[] startItems;
     public GameObject firstWeapon;
 
-    public List<GameObject> availebleItems;
+    public List<GameObject> availebleItemsGO;
+
+    public List<int> availebleItems;
 
 
     private static GameObject instance;
@@ -96,14 +98,14 @@ public class SavedStats : MonoBehaviour, IDataPersistance
 
         if (instance == null)
         {
-            instance = gameObject;
+            instance = gameObject; // is this correct?
         }
         else Destroy(gameObject);
 
     }
     private void Start()
     {
-        if (availebleItems == null)
+        if (availebleItemsGO == null)
         {
             AddAvailibleItems();
         }
@@ -160,9 +162,9 @@ public class SavedStats : MonoBehaviour, IDataPersistance
 
         this.availebleItems = data.availebleItems;
 
-        if (availebleItems == null)
+        if (availebleItemsGO == null)
         {
-            AddAvailibleItems();
+            LoadAvailibleItems();
         } 
     }
 
@@ -256,14 +258,36 @@ public class SavedStats : MonoBehaviour, IDataPersistance
     }
     public void AddAvailibleItems()
     {
-        if (availebleItems != null)
+        if (availebleItemsGO != null)
         {
-            availebleItems.Clear();
+            availebleItemsGO.Clear();
         }
 
         for (int i = 0; i < startItems.Length; i++)
         {
-            availebleItems.Add(startItems[i]);
+            availebleItemsGO.Add(startItems[i]);
+            availebleItems.Add(startItems[i].GetComponent<Item>().weaponID);
+        }
+    }
+
+    public void LoadAvailibleItems()
+    {
+        if (availebleItemsGO != null)
+        {
+            availebleItemsGO.Clear();
+        }
+
+        for (int i = 0; i < availebleItems.Count; i++)
+        {
+            for (int e = 0; e < allItems.Length; i++)
+            {
+                if (allItems[i].GetComponent<Item>().weaponID == availebleItems[i])
+                {
+                    availebleItemsGO.Add(allItems[i]);
+                }
+
+            }
+
         }
     }
 
@@ -275,7 +299,8 @@ public class SavedStats : MonoBehaviour, IDataPersistance
             if (enemiesKilledLatestRun >= 100)
             {
                 enemiesKilled100 = true;
-                availebleItems.Add(allItems[9]); //Adds GPS to the list of items
+                availebleItemsGO.Add(allItems[9]);
+                availebleItems.Add(allItems[9].GetComponent<Item>().weaponID); //Adds GPS to the list of items
                 
                 if (enemiesKilledLatestRun < 500)
                 {
@@ -290,7 +315,8 @@ public class SavedStats : MonoBehaviour, IDataPersistance
             if (enemiesKilledLatestRun >= 500)
             {
                 enemiesKilled500 = true;
-                availebleItems.Add(allItems[4]); // adds missile Launcher
+                availebleItemsGO.Add(allItems[4]); // adds missile Launcher
+                availebleItems.Add(allItems[4].GetComponent<Item>().weaponID);
                 enemiesKilledInTotal += enemiesKilledLatestRun;
             }
         }
@@ -317,7 +343,8 @@ public class SavedStats : MonoBehaviour, IDataPersistance
             if (GameObject.FindGameObjectWithTag("GameController").GetComponent<Timer>().minutes >= 20)
             {
                 stayAliveFor20min = true;
-                availebleItems.Add(allItems[2]); // add Acid Launcher
+                availebleItemsGO.Add(allItems[2]); // add Acid Launcher
+                availebleItems.Add(allItems[2].GetComponent<Item>().weaponID);
             }
         }
 
@@ -331,7 +358,8 @@ public class SavedStats : MonoBehaviour, IDataPersistance
                 {
                     if (humans.humanCompanions[i].gameObject.name == "Hank")
                     {
-                        availebleItems.Add(allItems[3]); // Laser Clean
+                        availebleItemsGO.Add(allItems[3]); // Laser Clean
+                        availebleItems.Add(allItems[3].GetComponent<Item>().weaponID);
                         hankSavedLevel1 = true;
                     }
                 }

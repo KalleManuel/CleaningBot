@@ -62,6 +62,7 @@ MonoBehaviour:
   available: 0
   startItem: 0
   maxLevelReached: 0
+  weaponID: 5
   type: 1
   itemTier:
   - tierName: Tier 1

@@ -109,9 +109,9 @@ public class HumanHealth : MonoBehaviour
     public void Dead()
     {
         string deathMessage = characterName + " is dead";
-        PlayerHud playerHUD = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerHud>();
-        StartCoroutine(playerHUD.SendMessageToHUD(deathMessage,3,false));
-        playerHUD.UpdateHumansInGame();
+
+        StartCoroutine(PlayerHud.playerHud.SendMessageToHUD(deathMessage,3,false));
+        PlayerHud.playerHud.UpdateHumansInGame();
         playerCompanions.UpdateHumanCompanions();
 
         Destroy(theHumanBody);

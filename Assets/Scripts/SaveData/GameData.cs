@@ -34,13 +34,9 @@ public class GameData
     public float extraMaxSpeed;
     public float extraHealth;
     public float extraXPBoost;
-    public float extraDMG;
+    public float extraDMG; 
 
-    
-
-    public List<GameObject> availebleItems;
-
-    
+    public List<int> availebleItems;
 
     public GameData()
     {
@@ -66,7 +62,7 @@ public class GameData
         this.allKeysFound = false;
         this.stayAliveFor20min = false;
         this.stayAliveFor10min = false;
-        this.availebleItems = null;
+        this.availebleItems = null; //is this wrong?
 
         this.reviveUpgradeCost = 0;
         this.level2ItemUpgradeCost = 0;

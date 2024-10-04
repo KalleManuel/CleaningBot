@@ -15,7 +15,7 @@ public class Item_LifeExpander : Item
 
     private GameObject player;
     private Health playerHP;
-    private PlayerHud playerHud;
+    
     private PlayerExperience playerXP;
 
     private SavedStats savedStats;
@@ -24,7 +24,7 @@ public class Item_LifeExpander : Item
     {
         savedStats = GameObject.FindGameObjectWithTag("CoinStash").GetComponent<SavedStats>();
         player = GameObject.FindGameObjectWithTag("Player");
-        playerHud = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerHud>();
+        
         playerHP = player.GetComponent<Health>();
         playerXP = player.GetComponent<PlayerExperience>();
     }
@@ -48,14 +48,14 @@ public class Item_LifeExpander : Item
 
             activated = true;
             playerHP.maxHealth += itemTier[itemLevel].extraLife;
-            playerHud.UpdateLifeBar();
+            PlayerHud.playerHud.UpdateLifeBar();
             
         }
         else
         {
             itemLevel++;
             playerHP.maxHealth += itemTier[itemLevel].extraLife;
-            playerHud.UpdateLifeBar();
+            PlayerHud.playerHud.UpdateLifeBar();
 
             if (itemLevel == itemMaxLevel - 1)
             {

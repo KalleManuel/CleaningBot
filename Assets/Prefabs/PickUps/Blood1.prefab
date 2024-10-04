@@ -126,10 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1ed27a5afe0df4f9172d5d30078a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experienceGained: 0.25
-  spawned: 0
+  type: 0
+  value: 0.2
+  moving: 0
   pickedUp: 0
-  player: {fileID: 0}
   speed: 10
   maxfloat: 5
   timer: 0.5

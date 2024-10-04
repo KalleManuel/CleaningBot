@@ -94,4 +94,12 @@ public class Item_VacumBoost : Item
         }
            playerXP.CloseUpgradeScreen(this, _isStartItem);  
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Blood")
+        {
+            collision.gameObject.GetComponent<GemPickUp>().pickedUp = true;
+        }
+    }
+  
 }

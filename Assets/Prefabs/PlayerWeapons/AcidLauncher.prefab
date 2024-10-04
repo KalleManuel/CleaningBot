@@ -55,7 +55,10 @@ MonoBehaviour:
   - Intensifies droprate, damage delt and duration
   - Intensifies droprate, damage delt and duration
   activated: 0
+  available: 0
+  startItem: 0
   maxLevelReached: 0
+  weaponID: 0
   type: 0
   itemTier:
   - tierName: Tier 1

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     [Header("General Item Information")]
+    public int weaponID;
     public string itemName;
     public Sprite itemImage;
     public int itemLevel;
@@ -15,6 +16,7 @@ public class Item : MonoBehaviour
     public bool available;
     public bool startItem;
     public bool maxLevelReached;
+ 
     
     public enum Type { Default, Attack, Defense}
     public Type type = Type.Default;

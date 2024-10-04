@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySpawnController : MonoBehaviour
 {
@@ -32,6 +33,9 @@ public class EnemySpawnController : MonoBehaviour
     public GameObject[] spawnPoints;
     private int activeSP;
     public Transform enemyParent;
+    
+    public Vector3 spawnPosition;
+    public Quaternion spawnRotation;
 
     public int waveNumber = 0;
 
@@ -59,7 +63,15 @@ public class EnemySpawnController : MonoBehaviour
             if (enemiesInWorld.Count < waves[waveNumber].amountEnemies)
             {
                 state = SpawnState.Locate;
-                FindSpawnPoint();
+
+                if (TryGetRandomSpawnPoint(out spawnPosition, out spawnRotation))
+                {
+                    state = SpawnState.Spawn;
+                    StartCoroutine(SpawningWave(waves[waveNumber]));
+                    
+                } else state = SpawnState.Check;
+
+               // FindSpawnPoint();
             }
 
         }
@@ -98,7 +110,7 @@ public class EnemySpawnController : MonoBehaviour
         {
             if (_wave.AmountBosses > 0)
             {
-                enemiesInWorld.Add(Instantiate(_wave.boss[Random.Range(0, _wave.boss.Length)], spawnPoints[activeSP].transform.position, spawnPoints[activeSP].transform.rotation, enemyParent.transform));
+                enemiesInWorld.Add(Instantiate(_wave.boss[Random.Range(0, _wave.boss.Length)], spawnPosition, spawnRotation, enemyParent.transform));
                 _wave.AmountBosses--;
                 yield return new WaitForSeconds(Random.Range(_wave.minRate, _wave.maxRate));
 
@@ -112,7 +124,7 @@ public class EnemySpawnController : MonoBehaviour
         }
         else
         {
-            enemiesInWorld.Add(Instantiate(_wave.enemies[Random.Range(0, _wave.enemies.Length)], spawnPoints[activeSP].transform.position, spawnPoints[activeSP].transform.rotation,enemyParent.transform));
+            enemiesInWorld.Add(Instantiate(_wave.enemies[Random.Range(0, _wave.enemies.Length)], spawnPosition, spawnRotation,enemyParent.transform));
 
             yield return new WaitForSeconds(Random.Range(_wave.minRate, _wave.maxRate));
 
@@ -120,5 +132,23 @@ public class EnemySpawnController : MonoBehaviour
         }
         
 
+    }
+
+    private bool TryGetRandomSpawnPoint(out Vector3 position, out Quaternion rotation)
+    {
+        int index = Random.Range(0, spawnPoints.Length);
+       
+        if (NavMesh.SamplePosition(spawnPoints[index].transform.position, out NavMeshHit hit, 0.5f, NavMesh.AllAreas))
+        {
+            position = hit.position;
+            rotation = spawnPoints[index].transform.rotation;
+            return true; //spawnPoints[index].GetComponent<EnemySpawner>().spawn;
+        }
+        else
+        {
+            position = default;
+            rotation = default;
+            return false;
+        }
     }
 }

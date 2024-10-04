@@ -113,7 +113,10 @@ MonoBehaviour:
   - Greater damage, larger radius, more healing power
   - Greater damage, larger radius, more healing power
   activated: 0
+  available: 0
+  startItem: 0
   maxLevelReached: 0
+  weaponID: 3
   type: 1
   itemTier:
   - tierName: Tier 1

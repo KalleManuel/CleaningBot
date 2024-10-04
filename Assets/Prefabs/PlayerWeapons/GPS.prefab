@@ -55,7 +55,10 @@ MonoBehaviour:
   - Human Pinged.
   - Ship Map Restored. Press M to acess.
   activated: 0
+  available: 0
+  startItem: 0
   maxLevelReached: 0
+  weaponID: 4
   type: 0
   miniMap: {fileID: 0}
   camBox: {fileID: 0}

@@ -15,7 +15,7 @@ public class PlayerExperience : MonoBehaviour
 
     public GameObject upgradeScreen;
 
-    private PlayerHud playerHud;
+    
     private AudioSource sfxPlayer;
     [SerializeField]
     private AudioClip[] pickUpSounds;
@@ -32,7 +32,7 @@ public class PlayerExperience : MonoBehaviour
     private void Start()
     {
         savedStats = GameObject.FindGameObjectWithTag("CoinStash").GetComponent<SavedStats>();
-        playerHud = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerHud>();
+        
         upgradeScreen.SetActive(false);
         updateWindowOpened = false;
         upgradesAmounts = 3;
@@ -68,8 +68,8 @@ public class PlayerExperience : MonoBehaviour
             sfxPlayer.clip = pickUpSounds[random];
             sfxPlayer.Play();
         }
-       
-        playerHud.UpdatePlayerExperience();
+
+        PlayerHud.playerHud.UpdatePlayerExperience();
     } 
 
     public void CloseUpgradeScreen(Item upgrade, bool startItem)
@@ -97,8 +97,8 @@ public class PlayerExperience : MonoBehaviour
 
                 experienceLevel++;
                 experience = 0;
-                playerHud.UpdatePlayerLevel();
-                playerHud.UpdatePlayerExperience();
+                PlayerHud.playerHud.UpdatePlayerLevel();
+                PlayerHud.playerHud.UpdatePlayerExperience();
             } 
         }
 

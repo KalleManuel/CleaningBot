@@ -6,21 +6,21 @@ using UnityEngine.UI;
 public class PlayerCompanions : MonoBehaviour
 {
     public List <GameObject> humanCompanions;
-    private PlayerHud playerHud;
+    
     public EndGame endTrigger;
     
 
     private void Start()
     {
-        playerHud = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerHud>();
+        
         
     }
 
     public void AddCompanion(GameObject _human)
     {
         humanCompanions.Add(_human);
-        playerHud.humansWithPlayer = humanCompanions.Count;
-        playerHud.UpdateHumanCollected();
+        PlayerHud.playerHud.humansWithPlayer = humanCompanions.Count;
+        PlayerHud.playerHud.UpdateHumanCollected();
 
         if (humanCompanions.Count == 6)
         {
@@ -43,8 +43,8 @@ public class PlayerCompanions : MonoBehaviour
 
             }
         }
-        playerHud.humansWithPlayer = humanCompanions.Count;
-        playerHud.UpdateHumanCollected();
+        PlayerHud.playerHud.humansWithPlayer = humanCompanions.Count;
+        PlayerHud.playerHud.UpdateHumanCollected();
 
     }
 

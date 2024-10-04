@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d843192fa529ff14a890baf9a3ef5e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponID: 11
   itemName: Speed Booster
   itemImage: {fileID: 21300000, guid: 8fa618442a966474980862f8df31c04a, type: 3}
   itemLevel: 0
@@ -55,6 +56,8 @@ MonoBehaviour:
   - Make you move like a sprinter
   - Make you move in supersonic speed
   activated: 0
+  available: 0
+  startItem: 0
   maxLevelReached: 0
   type: 0
   itemTier:

@@ -58,7 +58,10 @@ MonoBehaviour:
   - Increase experience reward
   - Increase experience reward
   activated: 0
+  available: 0
+  startItem: 0
   maxLevelReached: 0
+  weaponID: 2
   type: 0
   itemTier:
   - tierName: Tier 1

@@ -43,11 +43,11 @@ public class StartConditions : MonoBehaviour
 
     public void SetAvailableItems()
     {
-        for(int i = 0; i < stats.availebleItems.Count; i++)
+        for(int i = 0; i < stats.availebleItemsGO.Count; i++)
         {
             for (int e = 0; e < allItems.Length; e++)
             {
-                if (stats.availebleItems[i].gameObject.name == allItems[e].gameObject.name)
+                if (stats.availebleItemsGO[i].gameObject.name == allItems[e].gameObject.name)
                 {
                     allItems[e].GetComponent<Item>().available = true;
 

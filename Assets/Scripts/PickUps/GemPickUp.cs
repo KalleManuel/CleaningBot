@@ -9,117 +9,130 @@ public class GemPickUp : MonoBehaviour
     
     public float value = 0.2f;
 
-    private PlayerHud playerHud;
-    private PlayerExperience playerXP;
-    public bool spawned, pickedUp;
-    public GameObject player;
+    
+  //  private PlayerExperience playerXP;
+    public bool moving, pickedUp;
+   // public GameObject player;
    
     [SerializeField]
-    private float speed = 20;
+    public float speed = 20;
     private Rigidbody2D rb;
 
     public float maxfloat = 10;
 
     public float timer = 0.5f;
     private GameOver playerStatus;
-    private PlayerInventory inventory;
+    // private PlayerInventory inventory;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        Collectebles.collectibles.bloodClots.Add(this.gameObject);
         rb = GetComponent<Rigidbody2D>();
         playerStatus = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameOver>();
-        playerHud = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerHud>();
-       
+        
+       /*
         if (!playerStatus.dead)
         {
             player = GameObject.FindGameObjectWithTag("Player");
             playerXP = player.GetComponent<PlayerExperience>();
             inventory = player.GetComponent<PlayerInventory>();
         }
-       
+       */
         pickedUp = false;
+
+        // give the blood clot a small push when spawned to simulate that the alien been mashed, or exploded.
 
         Vector2 direction = new Vector2((float)Random.Range(-100, 100), (float)Random.Range(-100, 100));
         float force = Random.Range(0.1f, maxfloat);
-
-
-
         rb.AddForce(direction * force);
-        spawned = true;
+        moving = true;
 
-       TryMoveOutOfNonWalkableArea();
-
+       TryMoveOutOfNonWalkableArea(); // if spawned outside of bounderies move them inside
 
     }
     private void Update()
     {
-        if (spawned)
+        if (moving)
         {
-            if (timer> 0)
+            if (timer> 0)   // added a timer here so that the gentle push could appear.
             {
                 timer -= Time.deltaTime;
             }
             else
             {
-                spawned = false;
-                rb.velocity = Vector2.zero;
+                moving = false;
+                rb.velocity = Vector2.zero; // then stopped the movment to make the bloodclots lay still
             }
         }
-        if (pickedUp)
-        {
-            if (player!= null)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
 
-                if (Vector3.Distance(transform.position, player.transform.position) < 0.1)
+        /*
+        if (pickedUp) // this is made in update because I wanted the item sucked toward the player. I could just destroy the item when in range but I really wanted this effect.
+        {
+                transform.position = Vector3.MoveTowards(transform.position, Player.playerPosition.position, speed * Time.deltaTime);
+
+                if (Vector3.Distance(transform.position, Player.playerPosition.position) < 0.1)
                 {
                     if (type == Type.experience)
                     {
-                       playerXP.GainExperience(value);
+                       Player.playerXP.GainExperience(value);
                        Destroy(gameObject);
                     }
                     else if (type == Type.coin)
                     {
-                        inventory.AddCoin(value);
+                        Player.playerInventory.AddCoin(value);
                         Destroy(gameObject);
                     }
                     
                 }
-            }
+            
            
             
-        }
+     
+    */
     }
-
+    /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Vacum")
         {
-           
-           pickedUp = true;
+
+            pickedUp = true;
+
+
+            /* if (type == Type.experience)
+            {
+                playerXP.GainExperience(value);
+                Destroy(gameObject);
+            }
+            else if (type == Type.coin)
+            {
+                inventory.AddCoin(value);
+                Destroy(gameObject);
+            }
+
+            
+            
+
         }
-
-       
     }
-
+    */
     private void TryMoveOutOfNonWalkableArea()
     {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, transform.localScale, 0f);
        
-        if (player != null)
-        {
+       
             foreach (Collider2D collider in colliders)
             {
                 if (collider.CompareTag("NonWalkable"))
                 {
-                    Vector2 direction = (transform.position - player.transform.position).normalized;
+                    Vector2 direction = (transform.position - Player.playerPosition.position).normalized;
 
                     float force = Random.Range(0.1f, maxfloat);
                     rb.AddForce(direction * force);
                 }
             }
         }
-    }
+    
 }

@@ -44,9 +44,9 @@ public class UpgradeHandler : MonoBehaviour
     {
         // Find out wich items that are currently availeble
 
-        for (int i = 0; i < savedStats.availebleItems.Count; i++)
+        for (int i = 0; i < savedStats.availebleItemsGO.Count; i++)
         {
-            string itemToCompare = savedStats.availebleItems[i].GetComponent<Item>().itemName;
+            string itemToCompare = savedStats.availebleItemsGO[i].GetComponent<Item>().itemName;
             
 
             for (int e = 0; e < upgradeButtons.Length; e++)

@@ -5,6 +5,8 @@ using TMPro;
 
 public class PlayerHud : MonoBehaviour
 {
+    public static PlayerHud playerHud { get; private set;}
+
     [SerializeField]
     private string StartMessage;
     
@@ -43,7 +45,10 @@ public class PlayerHud : MonoBehaviour
     private bool playMessageSound;
     private AudioSource sfxPlayer;
 
-
+    private void Awake()
+    {
+        playerHud = this;
+    }
 
     // Start is called before the first frame update
     void Start()

@@ -25,7 +25,7 @@ public class Statistic : MonoBehaviour
     {
         bloodClots = GameObject.FindGameObjectsWithTag("Blood").Length;
         plungersInScene = GameObject.FindGameObjectsWithTag("Bullet").Length;
-        humansSaved = GetComponent<PlayerHud>().humansWithPlayer;
+        humansSaved = PlayerHud.playerHud.humansWithPlayer;
         debris = GameObject.FindGameObjectsWithTag("Debris").Length;
         trash = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().trash;
     }

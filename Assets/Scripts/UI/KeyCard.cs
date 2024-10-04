@@ -5,25 +5,19 @@ using UnityEngine;
 public class KeyCard : InventoryItem
 {
     public string message;
-    private PlayerHud playerHUD;
     private bool pickedUp;
 
-    private void Start()
-    {
-        playerHUD = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerHud>();
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            PlayerInventory inventory = collision.gameObject.GetComponent<PlayerInventory>();
-            inventory.addToInventory(GetComponent<InventoryItem>());
+           // PlayerInventory inventory = collision.gameObject.GetComponent<PlayerInventory>();
+            Player.playerInventory.addToInventory(GetComponent<InventoryItem>());
 
             if (!pickedUp) 
             {
-                StartCoroutine(playerHUD.SendMessageToHUD(message, 3, false));
+                StartCoroutine(PlayerHud.playerHud.SendMessageToHUD(message, 3, false));
                 GameObject.FindGameObjectWithTag("GameController").GetComponent<Statistic>().keys++;
                 pickedUp = true;
             }

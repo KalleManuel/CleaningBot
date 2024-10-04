@@ -7,7 +7,7 @@ using TMPro;
 public class EndGame : MonoBehaviour
 {
     private Camera mCamera;
-    private PlayerHud playerHUD;
+    
     private Statistic stats;
     private GameOver gameOverScript;   
     private MusicHandler music;
@@ -33,7 +33,7 @@ public class EndGame : MonoBehaviour
 
         GameObject gameController = GameObject.FindGameObjectWithTag("GameController");
        
-        playerHUD = gameController.GetComponent<PlayerHud>();
+        
         stats = gameController.GetComponent<Statistic>();
         gameOverScript = gameController.GetComponent<GameOver>();
         music = gameController.GetComponent<MusicHandler>();
@@ -82,7 +82,7 @@ public class EndGame : MonoBehaviour
 
     public void ShowPickUpPoint()
     {
-        StartCoroutine(playerHUD.SendMessageToHUD("Take the humans to the pick up point",5,false));
+        StartCoroutine(PlayerHud.playerHud.SendMessageToHUD("Take the humans to the pick up point",5,false));
         pickUpPointIcon.SetActive(true);
     }
 

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class HealthPickUp : MonoBehaviour
 {
-    private PlayerHud playerHud;
+    
     
     [SerializeField]
     private int healthFill;
 
     private void Start()
     {
-        playerHud = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerHud>();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -25,8 +25,8 @@ public class HealthPickUp : MonoBehaviour
             {
                 player.health = player.maxHealth;
             }
-  
-            playerHud.UpdateLifeBar();
+
+            PlayerHud.playerHud.UpdateLifeBar();
 
             Destroy(gameObject);
         }

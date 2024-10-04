@@ -5,7 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
 
-    private PlayerHud playerHUD;
+   
     public string missingKeyMessage;
     public InventoryItem theCorrectKey;
     public string correctKey;
@@ -16,7 +16,7 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
-        playerHUD = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerHud>();
+        
         anim = GetComponent<Animator>();
     }
 
@@ -24,11 +24,13 @@ public class Door : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            PlayerInventory playerInventory = collision.GetComponent<PlayerInventory>();
+            // PlayerInventory playerInventory = collision.GetComponent<PlayerInventory>();
 
-            for (int i =0; i < playerInventory.inventoryItems.Count; i++)
+            //  for (int i =0; i < playerInventory.inventoryItems.Count; i++)
+            for (int i = 0; i < Player.playerInventory.inventoryItems.Count; i++)
             {
-                if (correctKey == playerInventory.inventoryItems[i].itemName)
+                //if (correctKey == playerInventory.inventoryItems[i].itemName)
+                if (correctKey == Player.playerInventory.inventoryItems[i].itemName)
                 {
                     doorOpened = true;
                     anim.SetBool("doorOpen", true);
@@ -38,7 +40,7 @@ public class Door : MonoBehaviour
 
             if (!doorOpened)
             {
-                StartCoroutine(playerHUD.SendMessageToHUD(missingKeyMessage, 3, false));
+                StartCoroutine(PlayerHud.playerHud.SendMessageToHUD(missingKeyMessage, 3, false));
             }
 
         }

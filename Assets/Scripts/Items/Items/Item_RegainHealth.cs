@@ -19,7 +19,7 @@ public class Item_RegainHealth : Item
 
     private GameObject player;
     private Health playerHP;
-    private PlayerHud playerHud;
+    
     private PlayerExperience playerXP;
 
     private SavedStats savedStats;
@@ -28,7 +28,7 @@ public class Item_RegainHealth : Item
     {
         savedStats = GameObject.FindGameObjectWithTag("CoinStash").GetComponent<SavedStats>();
         player = GameObject.FindGameObjectWithTag("Player");
-        playerHud = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerHud>();
+        
         playerHP = player.GetComponent<Health>();
         playerXP = player.GetComponent<PlayerExperience>();
 
@@ -50,7 +50,7 @@ public class Item_RegainHealth : Item
             else if (playerHP.health < playerHP.maxHealth)
             {
                 playerHP.health += itemTier[itemLevel].regainHealth;
-                playerHud.UpdateLifeBar();
+                PlayerHud.playerHud.UpdateLifeBar();
                 timer = itemTier[itemLevel].reloadTime;
             }
         }
@@ -63,7 +63,7 @@ public class Item_RegainHealth : Item
             else if (playerHP.health < playerHP.maxHealth)
             {
                 playerHP.health += itemTier[itemLevel].regainHealth;
-                playerHud.UpdateLifeBar();
+                PlayerHud.playerHud.UpdateLifeBar();
                 timer = reloadTimeOrdinary;
             }
         }
